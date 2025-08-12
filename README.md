@@ -1,4 +1,4 @@
-# 🌱 Crop Disease Detection System
+# 🌱 Crop Disease Detection System 🌱
 
 A simplified Flask-based web application that uses deep learning to detect plant diseases from images. This project focuses solely on disease detection functionality, making it easy to deploy and use.
 
