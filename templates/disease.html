@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Detection - Upload Image</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            padding: 20px 0;
+        }
+        .upload-container {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .upload-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .upload-form {
+            text-align: center;
+        }
+        .file-input {
+            margin: 20px 0;
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        .submit-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .back-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="upload-container">
+            <div class="upload-header">
+                <h1>🔍 Disease Detection</h1>
+                <p class="text-muted">Upload an image of your plant to detect diseases</p>
+            </div>
+            
+            <form class="upload-form" method="post" action="/disease-predict" enctype="multipart/form-data">
+                <div class="file-input">
+                    <label for="inputfile" class="form-label">
+                        <strong>Select Plant Image</strong>
+                    </label>
+                    <input type="file" 
+                           name="file" 
+                           class="form-control" 
+                           id="inputfile" 
+                           accept="image/*"
+                           onchange="preview_image(event)" 
+                           required>
+                </div>
+                
+                <img id="output-image" class="preview-image" />
+                
+                <div class="mt-4">
+                    <button class="btn submit-btn" type="submit">
+                        🔍 Analyze Image
+                    </button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-4">
+                <a href="/" class="back-btn">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function preview_image(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('output-image');
+                output.src = reader.result;
+                output.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
